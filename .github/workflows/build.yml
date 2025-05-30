@@ -36,3 +36,12 @@ jobs:
           context: .
           push: false
           tags: dcs-srs-server:${{ github.event.inputs.image_tag }}
+
+      - name: Save Docker image as tarball
+        run: docker save dcs-srs-server:${{ github.event.inputs.image_tag }} -o dcs-srs-server.tar
+
+      - name: Upload image artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dcs-srs-server-image
+          path: dcs-srs-server.tar
