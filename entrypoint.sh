@@ -96,6 +96,12 @@ echo ""
 # ============================================================================
 # START THE SRS SERVER
 # ============================================================================
+# Check if the SRS server binary exists; if not, run the download script
+if [ ! -f ./SRS-Server-Commandline ]; then
+  echo "SRS-Server-Commandline not found! Running download-latest-server.sh..."
+  ./download-latest-server.sh
+fi
+
 # Execute the SRS server binary with the generated configuration
 # 'exec' replaces this script process with the server process
 echo "Starting SRS Server..."
